@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Filters</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+    <div class="row">
+        <div class="col">
+            <div class="container" id="filters">
+                <form>
+                    <div class="form-group">
+                        <label for="ratingElement">Rating</label>
+                        <input type="range" max="5" min="0" class="form-control-range" id="ratingElement">
+                        <label for="priceElement">price</label>
+                        <input type="range" max="5" min="0" class="form-control-range" id="priceElement">
+                        <label for="location">location</label>
+                        <input type="text" class="form-control" id="location">
+                        <label for="category">Type</label>
+                            <select id="category">
+                                <option value="0">Select category</option>
+                                <option value="airport">airport</option>
+                                <option value="amusement_park">amusement park</option>
+                                <option value="aquarium">aquarium</option>
+                                <option value="art_gallery">art gallery</option>
+                                <option value="atm">atm</option>
+                                <option value="bank">bank</option>
+                                <option value="bar">bar</option>
+                                <option value="beauty_salon">beauty salon</option>
+                                <option value="book_store">book store</option>
+                                <option value="bowling_alley">bowling alley</option>
+                                <option value="bus_station">bus station</option>
+                                <option value="cafe">cafe</option>
+                                <option value="campground">campground</option>
+                                <option value="casino">casino</option>
+                                <option value="clothing_store">clothing store</option>
+                                <option value="convenience_store">convenience store</option>
+                                <option value="doctor">doctor</option>
+                                <option value="florist">florist</option>
+                                <option value="gas_station">gas station</option>
+                                <option value="gym">gym</option>
+                                <option value="hospital">hospital</option>
+                                <option value="laundry">laundry</option>
+                                <option value="library">library</option>
+                                <option value="liquor_store">liquor store</option>
+                                <option value="locksmith">locksmith</option>
+                                <option value="movie_theater">movie theater</option>
+                                <option value="museum">museum</option>
+                                <option value="night_club">night club</option>
+                                <option value="park">park</option>
+                                <option value="parking">parking</option>
+                                <option value="pet_store">pet store</option>
+                                <option value="pharmacy">pharmacy</option>
+                                <option value="police">police</option>
+                                <option value="post_office">post office</option>
+                                <option value="restaurant">restaurant</option>
+                                <option value="school">school</option>
+                                <option value="shopping_mall">shopping mall</option>
+                                <option value="spa">spa</option>
+                                <option value="stadium">stadium</option>
+                                <option value="store">store</option>
+                                <option value="subway_station">subway station</option>
+                                <option value="supermarket">supermarket</option>
+                                <option value="taxi_stand">taxi stand</option>
+                                <option value="train_station">train station</option>
+                                <option value="zoo">zoo</option>
+                            </select>
+                        <button id="get" type="button" class="btn btn-primary">get</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- Javascript for Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <!-- Algolia Places Library -->
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.16.4"></script>
+    <!-- Site Javascript -->
+    <script src="assets/javascript/app.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaIexeQVRs07vtlX2WE6PSzjKEMoFt1u8&callback=initMap">
+    </script>
+</body>
+
+</html>
