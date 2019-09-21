@@ -98,7 +98,11 @@ function callback(results, status) {
                 rating:  location.rating,
                 placeId:  location.place_id,
                 openNow:  Object.keys(location).includes("opening_hours") ? location.opening_hours.open_now : null,
-                latLng:  `${location.geometry.location.lat()},${location.geometry.location.lng()}`  
+                latLng:  {
+                    lat: location.geometry.location.lat(),
+                    lng: location.geometry.location.lng()
+                }
+                // `${location.geometry.location.lat()},${location.geometry.location.lng()}`  
             };
             return newObj;
         });
@@ -110,9 +114,24 @@ function callback(results, status) {
             console.log(results[i]);
         }
 
+        displayMarkers();
         renderResults(locationsArr);
     }
 }
+
+
+function displayMarkers() {
+    var markers = locationsArr.map(function (location) {
+        return new google.maps.Marker({
+            position: location.latLng,
+            label: location.name
+        });
+    })
+    console.log(markers);
+    var markerCluster = new MarkerClusterer(map, markers, {
+        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+    });
+ }
 
   function renderResults(results){
       resultsDiv = $("#results");
