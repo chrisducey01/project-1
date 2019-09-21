@@ -20,10 +20,14 @@ body{
 h1{
   position: relative;
   left: 20%;
-  color: rgb(4, 138, 64);
+  color: rgb(61, 144, 227);
   font-family: Georgia, Times, 'Times New Roman', serif;
 }
 
+label{
+  color: rgb(22, 78, 135);
+  font-family: Georgia, Times, 'Times New Roman', serif;
+}
 
 button{
  background-color: red;
