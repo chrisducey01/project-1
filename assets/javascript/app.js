@@ -1,3 +1,6 @@
+
+
+
 const algoliaApiKey = "420478f8416cbf67fc5dc4b1617e298a";
 const algoliaAppId = "pl4NIPBVHT19";
 const googleMapsApiKey = "AIzaSyDaIexeQVRs07vtlX2WE6PSzjKEMoFt1u8";
@@ -10,8 +13,8 @@ var location;
 var placesAutocomplete;
 
 let latLng = {
-    lat:33.4487,
-    lng:-112.071
+    lat: 33.4487,
+    lng: -112.071
 };  //latitude and longitude in an object returned from the suggestion from Algolia places
 
 
@@ -26,8 +29,9 @@ const aerisWeather = {
             url: queryUrl,
             method: "GET"
         }).then(function (response) {
-            callback(response);
+            setWeatherData(response);
         });
+
     }
 };
 
@@ -42,6 +46,76 @@ const aerisResults = {
     sunrise: "",
     sunset: ""
 }
+
+function setWeatherData(weatherObject) {
+    aerisResults.temp = weatherObject.response.ob.tempF;
+    aerisResults.humidity = weatherObject.response.ob.humidity;
+    aerisResults.place = weatherObject.response.place.name;
+    aerisResults.icon = weatherObject.response.ob.icon;
+    aerisResults.time = moment(weatherObject.response.ob.dateTimeISO).format('h:mm:ss a');
+    aerisResults.sunrise = moment(weatherObject.response.ob.sunriseISO).format('h:mm:ss a');
+    aerisResults.sunset = moment(weatherObject.response.ob.sunsetISO).format('h:mm:ss a');
+
+    console.log(weatherObject);
+    console.log(aerisResults.temp);
+    console.log(aerisResults.humidity);
+    console.log(aerisResults.place);
+    console.log(aerisResults.icon);
+    console.log(aerisResults.time);
+    console.log(aerisResults.sunrise);
+    console.log(aerisResults.sunset);
+    cardDiv = $("<div>").addClass("card mb-3");
+    rowDiv = $("<div>").addClass("row no-gutters");
+    colDiv = $("<div>").addClass("col-4");
+    newImg = $("<img>").addClass("card-img").attr("src","https://assetsds.cdnedge.bluemix.net/sites/default/files/styles/very_big_2/public/news/images/sunny_leone.jpg?itok=Y7aoDGDq");
+    //
+    newCol = $("<div>").addClass("col-8");
+    newCardBody =  $("<div>").addClass("card-body");
+    weatherTemp = $("<h5>").addClass("card-text").text(`Weather : ${aerisResults.temp}`);
+    console.log(aerisResults.temp);
+    weatherHumidity = $("<h5>").addClass("card-text").text(`Humidity :  ${aerisResults.humidity}`);
+    weatherPlace = $("<h5>").addClass("card-text").text(`Place : ${aerisResults.place}`);
+    weatherTime = $("<h5>").addClass("card-text").text(`Time : ${aerisResults.time}`);
+    weatherSunrise = $("<h5>").addClass("card-text").text(`Sunrise : ${aerisResults.sunrise}`);
+    weatherSunset = $("<h5>").addClass("card-text").text(`Sunset : ${aerisResults.sunset}`);
+    
+    colDiv.append(newImg);
+    rowDiv.append(colDiv);
+    newCardBody.append(weatherPlace, weatherTime, weatherSunrise, weatherSunset, weatherTemp, weatherHumidity);
+    newCol.append(newCardBody);
+    cardDiv.append(rowDiv, newCol);
+    $("#weather").append(cardDiv);
+
+}
+
+function displayWeather(){
+  cardDiv = $("<div>").addClass("card mb-3");
+rowDiv = $("<div>").addClass("row no-gutters");
+colDiv = $("<div>").addClass("col-4");
+newImg = $("<img>").addClass("card-img").attr("src","");
+//
+newCol = $("<div>").addClass("col-8");
+newCardBody =  $("<div>").addClass("card-body");
+weatherTemp = $("<h5>").addClass("card-text").text(aerisResults.temp);
+console.log(aerisResults.temp);
+weatherHumidity = $("<h5>").addClass("card-text").text(aerisResults.humidity);
+weatherPlace = $("<h5>").addClass("card-text").text(aerisResults.place);
+weatherTime = $("<h5>").addClass("card-text").text(aerisResults.time);
+weatherSunrise = $("<h5>").addClass("card-text").text(aerisResults.sunrise);
+weatherSunset = $("<h5>").addClass("card-text").text(aerisResults.sunset);
+
+colDiv.append(newImg);
+rowDiv.append(colDiv);
+newCardBody.append(weatherPlace, weatherTime, weatherSunrise, weatherSunset, weatherTemp, weatherHumidity);
+newCol.append(newCardBody);
+cardDiv.append(rowDiv, newCol);
+$("#weather").append(cardDiv);
+
+
+}
+
+
+
 
 
 function logOutToConsole(obj) {
@@ -209,7 +283,7 @@ function setWeatherData(weatherObject) {
 $(document).ready(function () {
 
     //instantiate places and attach it to an input text box in the html
-        placesAutocomplete = places({
+    placesAutocomplete = places({
         appId: algoliaAppId,
         apiKey: algoliaApiKey,
         container: document.querySelector('#location')
@@ -217,18 +291,17 @@ $(document).ready(function () {
 
 
     //When user selects a suggested address, save off the latitude and longitude
-    placesAutocomplete.on('change', e => {latLng = e.suggestion.latlng;});
+    placesAutocomplete.on('change', e => { latLng = e.suggestion.latlng; });
 
-    
 
     //aerisWeather.getCurrentWeather("33.4486,-112.077", logOutToConsole);  //testing with lat/long for Phoenix
 
     $(document).on("click","#get",function(){
         let rating = $("#ratingElement").val();
-        let pricing=$("#priceElement").val();
+        let pricing = $("#priceElement").val();
         let location = $("#location").val();
         let category = $("#category").val();
-        console.log(rating,pricing,location,category,latLng)
+        console.log(rating, pricing, location, category, latLng)
         //getPlacesData(category);
 
         //Get current weather via AJAX call and then update in HTML

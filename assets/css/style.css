@@ -1,4 +1,10 @@
-/* form{
+
+.active, .btn:hover {
+    background-color: #666;
+    color: #fffb00;
+    cursor: pointer;
+}
+form{
 margin: auto;
 width:30%;
 
@@ -22,45 +28,62 @@ body{
 button{
  background-color: red;
 }
-
-/* select{
+/* 
+select{
   position: relative;
   margin-top:  10px;
 } */
 
 .navbar {
   width: 100%;
-}
+} 
 
 /* .card-body{
   background-color: rgb(84, 207, 255);
   color: white;
 } */
 
-/* .weather-display{
-  margin: 2px 0 5px 0;
-    font-size: 2em;
-    color: white;
 
-} */
 
 #map{
-  min-height: 600px;
+  min-height: 24em;
 }
 
-#map, #weather-div, #results, .inputs{
-  width: 90%;
-  margin: 0 auto;
+.jumbotron{
+  padding: 12px;
+  margin-top: 20px;
+  background:#36264a;
 }
 
-#weather-div{
-  margin-bottom: 30px;
+.card-img-overlay{
+  color: #f8f9fa;
+  font-weight: bolder;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.ap-dropdown-menu{
-  text-align: left;
+h3{
+  text-align: center;
+}
+#weather-condition{
+  opacity: 0.6;
+  height: 200px;
 }
 
-.dropdown{
-  width: 100%;
+span{
+  margin-right: 1px;
+  font-size: 17.5px;
+}
+.RES{
+  margin-bottom: 20px;
+}
+
+.results{
+  padding: 0;
+  border: #36264a;
+  margin-bottom: 20px;
+}
+
+#result-img{
+  height: 100%;
 }
