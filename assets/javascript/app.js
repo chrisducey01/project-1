@@ -237,6 +237,21 @@ function setWeatherData(weatherObject) {
     aerisResults.dateTime = moment(weatherObject.response.ob.dateTimeISO).format('h:mm a');
     aerisResults.heatIndex = weatherObject.response.ob.heatindexF;
     aerisResults.weatherConditions = weatherObject.response.ob.weather;
+    if (aerisResults.weatherConditions=="Sunny"){
+        console.log("sunny");
+        $("#weather-condition").attr("src","assets/css/images/sunny-weather.jpg")
+    }else if (aerisResults.weatherConditions=="Rainy"){
+        $("#weather-condition").attr("src","assets/css/images/rainy-weather.jpg")
+    }else if (aerisResults.weatherConditions=="Cloudy"){
+        $("#weather-condition").attr("src","assets/css/images/cloudy-weather.jpg")
+    }else if (aerisResults.weatherConditions=="Snowy"){
+        $("#weather-condition").attr("src","assets/css/images/snowy-weather.jpg")
+    }
+
+    else{
+        $("#weather-condition").attr("src","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdh0A2Gi5sD-AjzwrBe0kyQueh_A_9BbRZ05lbjljJ9AdpR7ho")
+    }
+
     aerisResults.sunrise = moment(weatherObject.response.ob.sunriseISO).format('h:mm a');
     aerisResults.sunset = moment(weatherObject.response.ob.sunsetISO).format('h:mm a');
 
