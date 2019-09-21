@@ -18,11 +18,10 @@
 <body>
 
     <div class="container-fluid">
-
         <div class="row nav">
             <!-- <div class="col" id="header"> -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="col-12 col-lg-2 clear-fix" >
+                <div class="col-12 col-lg-2 clear-fix text-center" >
                     <a href="#" class=" navbar-left">
                         <img src="../project-1/assets/css/images/trava-vada.png">
                     </a>
@@ -119,8 +118,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </nav>
             <!-- </div> -->
         </div>
@@ -130,79 +127,10 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center RES">
-
-            <div class="card col-md-10 col-md-offset-1 results" id="">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img id="result-img" src="https://storage.googleapis.com/smstl/20181129/205/louie-demun-best-new-restaurant-lg-1.jpg" class="card-img" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body bg-dark">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-md-10 col-md-offset-1 results">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img id="result-img" src="https://img1.10bestmedia.com/Images/Photos/356326/IMG-7361_55_660x440.JPG" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body bg-dark">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
-
+        <div class="row justify-content-center RES" id="results">
         </div>
     </div>
 
-    <!-- Display current weather based on search location -->
-    <div id="weather-div" class="text-white bg-dark text-center">
-        <div class="row">
-            <div class="col"><span class="weather-display">Temp</span></div>
-            <div class="col"><span class="weather-display">Humidity</span></div>
-            <div class="col"><span class="weather-display">Location</span></div>
-            <div class="col"><span class="weather-display">Heat Index</span></div>
-            <div class="col"><span class="weather-display">Conditions</span></div>
-            <div class="col"><span class="weather-display">Time</span></div>
-            <div class="col"><span class="weather-display">Sunrise</span></div>
-            <div class="col"><span class="weather-display">Sunset</span></div>
-        </div>
-        <div class="row">
-            <div class="col"><span id="current-temp"></span></div>
-            <div class="col"><span id="humidity"></span></div>
-            <div class="col"><span id="location-weather"></span></div>
-            <div class="col"><span id="heat-index"></span></div>
-            <div class="col"><span id="weather-conditions"></span></div>
-            <div class="col"><span id="date-time"></span></div>
-            <div class="col"><span id="sunrise"></span></div>
-            <div class="col"><span id="sunset"></span></div>
-        </div>
-    </div>
-
-    <!-- Display details of all places returned in search results -->
-    <div class="row">
-        <div class="col">
-            <div id="results">
-            </div>
-        </div>
-    </div>
-
-    </div>
 
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <!-- JQuery -->
@@ -216,15 +144,15 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <!-- Algolia Places Library -->
-    <script src="https://cdn.jsdelivr.net/npm/places.js@1.16.4"></script>
-    <!-- Site Javascript -->
-    <script src="assets/javascript/app.js"></script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaIexeQVRs07vtlX2WE6PSzjKEMoFt1u8&libraries=places&callback=initMap">
         </script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
-
+    <script
+        src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.16.4"></script>
+    <!-- Site Javascript -->
+    <script src="assets/javascript/app.js"></script>
 </body>
 
 </html>
