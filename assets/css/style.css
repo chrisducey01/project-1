@@ -7,14 +7,7 @@ form{
 margin: auto;
 width:30%;
 
-} */
-
-h1{
-position: relative;
-left: 20%;
-color: rgb(4, 138, 64);
-font-family: Georgia, Times, 'Times New Roman', serif;
-}
+} 
 
 body{
 
@@ -22,24 +15,21 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 }
+h1{
+  position: relative;
+  left: 20%;
+  color: rgb(4, 138, 64);
+  font-family: Georgia, Times, 'Times New Roman', serif;
+}
+
 
 button{
  background-color: red;
 }
-/* 
-select{
-  position: relative;
-  margin-top:  10px;
-} */
 
 .navbar {
   width: 100%;
 } 
-
-/* .card-body{
-  background-color: rgb(84, 207, 255);
-  color: white;
-} */
 
 
 
@@ -85,3 +75,4 @@ span{
 #result-img{
   height: 100%;
 }
+

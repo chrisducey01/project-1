@@ -8,11 +8,12 @@ var service;
 var request;
 var location;
 var placesAutocomplete;
+let thumbnail="assets/images/generic.png"
 
 let latLng = {
     lat: 33.4487,
     lng: -112.071
-};  //latitude and longitude in an object returned from the suggestion from Algolia places
+}; //latitude and longitude in an object returned from the suggestion from Algolia places
 
 
 const aerisWeather = {
@@ -52,35 +53,36 @@ const aerisResults = {
 function initMap() {
 
     map = new google.maps.Map(document.getElementById('map'), {
-       zoom: 16,
-       center: {
-         lat: 33.4486,
-         lng: -112.077
-       },
-       mapTypeId: "roadmap"
+        zoom: 16,
+        center: {
+            lat: 33.4486,
+            lng: -112.077
+        },
+        mapTypeId: "roadmap"
     });
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
 
-          //Update the global var that holds lat/lng to have the current location
-          latLng.lat = position.coords.latitude;
-          latLng.lng = position.coords.longitude;
-          aerisWeather.getCurrentWeather(`${latLng.lat},${latLng.lng}`, setWeatherData);  
-          console.log(latLng);
+            //Update the global var that holds lat/lng to have the current location
+            latLng.lat = position.coords.latitude;
+            latLng.lng = position.coords.longitude;
+            $("#location").val("Current Location");
+            console.log(position);
+            aerisWeather.getCurrentWeather(`${latLng.lat},${latLng.lng}`, setWeatherData);
+            console.log(latLng);
 
-          map.setCenter(pos);
-          console.log("Successfully setup gelocation for map");
-        }, function() {
+            map.setCenter(pos);
+            console.log("Successfully setup gelocation for map");
+        }, function () {
             console.log("Unable to setup geolocation for map.  Falling back to default location.");
         });
-    } 
-    else {
+    } else {
         // Browser doesn't support Geolocation
         console.log("Browser doesn't support geolocation for map.  Falling back to default location.");
     }
@@ -89,11 +91,11 @@ function initMap() {
 
 function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-        locationsArr = results.map(function(location){
+        locationsArr = results.map(function (location) {
             let newObj = {
                 name: location.name,
-                address:  location.formatted_address,
-                icon:  location.icon,
+                address: location.formatted_address,
+                icon: location.icon,
                 priceLevel: location.price_level,
                 rating:  location.rating,
                 placeId:  location.place_id,
@@ -137,19 +139,20 @@ function displayMarkers() {
       resultsDiv = $("#results");
       resultsDiv.empty();
 
-      //Build a card for each places result and append to the div
-      results.forEach( result => {
+    //Build a card for each places result and append to the div
+    results.forEach(result => {
         let cardDiv = $("<div>");
         let cardRow = $("<div>");
         let cardImgDiv = $("<div>");
         let cardBodyDiv = $("<div>");
 
+        cardDiv.attr("id",result.placeId);
         cardDiv.addClass("card col-md-10 col-md-offset-1 results");
         cardRow.addClass("row no-gutters");
-        cardImgDiv.addClass("col-md-4");
-        cardBodyDiv.addClass("col-md-8 bg-dark text-white p-2");
+        cardImgDiv.addClass("col-md-3");
+        cardBodyDiv.addClass("col-md-9 bg-dark text-white p-2");
 
-        cardImgDiv.append($(`<img id="result-img" src="https://storage.googleapis.com/smstl/20181129/205/louie-demun-best-new-restaurant-lg-1.jpg" class="card-img" alt="restaurant-pic">`));
+        cardImgDiv.append($(`<img id="result-img" src="${thumbnail}" class="card-img img-thumbnail" alt="restaurant-pic">`));
 
         cardBodyDiv.append($(`<h5 class="card-title">${result.name}</h5>`));
         cardBodyDiv.append($(`<p class="card-text">${result.address}</p>`));
@@ -161,8 +164,8 @@ function displayMarkers() {
         cardRow.append(cardImgDiv,cardBodyDiv);
         cardDiv.append(cardRow);
         resultsDiv.append(cardDiv);
-      });
-  }
+    });
+}
 
 
 
@@ -177,7 +180,6 @@ function setWeatherData(weatherObject) {
     aerisResults.sunrise = moment(weatherObject.response.ob.sunriseISO).format('h:mm a');
     aerisResults.sunset = moment(weatherObject.response.ob.sunsetISO).format('h:mm a');
 
-  
     console.log(weatherObject);
     console.log(aerisResults.temp);
     console.log(aerisResults.humidity);
@@ -210,42 +212,44 @@ $(document).ready(function () {
 
     //When user selects a suggested address, save off the latitude and longitude
     placesAutocomplete.on('change', e => { latLng = e.suggestion.latlng; });
-
-
-    //aerisWeather.getCurrentWeather("33.4486,-112.077", logOutToConsole);  //testing with lat/long for Phoenix
-
-    $(document).on("click","#get",function(){
-        let rating = $("#ratingElement").val();
-        let pricing = $("#priceElement").val();
-        let location = $("#location").val();
-        let category = $("#category").val();
-        console.log(rating, pricing, location, category, latLng)
-        //getPlacesData(category);
-
-        //Get current weather via AJAX call and then update in HTML
-        aerisWeather.getCurrentWeather(`${latLng.lat},${latLng.lng}`, setWeatherData); 
-
-        map.setCenter(latLng);
-    
-        location = new google.maps.LatLng(latLng.lat,latLng.lng );
-
-        request = {
-            location: location,
-            radius: '500',
-            query: category
-          };
-        
-
-          service = new google.maps.places.PlacesService(map);
-          service.textSearch(request, callback);
-        
-     });
-
-    //  $(document).on("click",".dropdown-item",function(){
-    //     console.log(this.value);
-    //     $("#dropdownMenuButton").text(this.value);
-    //  });
-    
-    
 });
 
+
+$(document).on("click", "#get", function () {
+    let rating = $("#ratingElement").val();
+    let pricing = $("#priceElement").val();
+    let location = $("#location").val();
+    let category = $("#category").val();
+    console.log(rating, pricing, location, category, latLng)
+    //getPlacesData(category);
+    if(category== "airport"){
+        thumbnail="assets/images/airport.png"
+    }else if(category== "bar"){
+        thumbnail="assets/images/bar.png"
+    }else if(category== "cafe"){
+        thumbnail="assets/images/cafe.png"
+    }else if(category== "casino"){
+        thumbnail="assets/images/casino.png"
+    }else if(category== "restaurant"){
+        thumbnail="assets/images/resturant.png"
+    }
+    else{
+        thumbnail="assets/images/generic.png"
+    }
+    //Get current weather via AJAX call and then update in HTML
+    aerisWeather.getCurrentWeather(`${latLng.lat},${latLng.lng}`, setWeatherData);
+
+    map.setCenter(latLng);
+
+    location = new google.maps.LatLng(latLng.lat, latLng.lng);
+
+    request = {
+        location: location,
+        radius: '500',
+        query: category
+    };
+
+
+    service = new google.maps.places.PlacesService(map);
+    service.textSearch(request, callback);
+});
